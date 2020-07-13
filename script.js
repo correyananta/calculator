@@ -51,16 +51,16 @@ const calculate = () => {
   let result = ''
   switch(calculationOperator) {
     case '+':
-      result = pasteFloat (prevNumber) + pasteFloat(currentNumber)
+      result = parseFloat(prevNumber) + parseFloat(currentNumber)
       break;
     case '-':
-      result = pasteFloat (prevNumber) - pasteFloat(currentNumber)
+      result = parseFloat(prevNumber) - parseFloat(currentNumber)
       break;
     case '/':
-      result = pasteFloat (prevNumber) / pasteFloat(currentNumber)
+      result = parseFloat(prevNumber) / parseFloat(currentNumber)
       break;
     case '*':
-      result = pasteFloat (prevNumber) * pasteFloat(currentNumber)
+      result = parseFloat(prevNumber) * parseFloat(currentNumber)
       break;
     default:
       return
@@ -79,8 +79,9 @@ clearBtn.addEventListener('click', () => {
   clearAll()
   updateScreen(currentNumber)
 })
+
 inputDecimal = (dot) => {
-  if (currentNumber.includes('.')){
+  if (currentNumber.includes('.')) {
     return
   }
   currentNumber += dot
