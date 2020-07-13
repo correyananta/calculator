@@ -27,6 +27,7 @@ button {
   border: 1px solid black;
   font-size: 32px;
   color: #fff;
+  width: 25%;
   outline: none;
 }
 .all-clear, .zero-btn {
