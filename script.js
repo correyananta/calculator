@@ -5,7 +5,7 @@ const updateScreen = (number) => {
 }
 
 
-const number = document.querySelectorAll(".number")
+const numbers = document.querySelectorAll(".number")
 
 numbers.forEach((number) => {
   number.addEventListener("click", (event) => {
@@ -33,7 +33,62 @@ operators.forEach((operator) => {
 })
 
 const inputOperator = (operator) => {
-  prevNumber = currentNumber
+  if (calculationOperator === ''){
+    prevNumber = currentNumber
+  }
   calculationOperator = operator
-  currentNumber = ''
+  currentNumber = '0'
 }
+
+const equalSign = document.querySelector('.equal-sign')
+
+equalSign.addEventListener('click', () => {
+  calculate()
+  updateScreen(currentNumber)
+})
+
+const calculate = () => {
+  let result = ''
+  switch(calculationOperator) {
+    case '+':
+      result = pasteFloat (prevNumber) + pasteFloat(currentNumber)
+      break;
+    case '-':
+      result = pasteFloat (prevNumber) - pasteFloat(currentNumber)
+      break;
+    case '/':
+      result = pasteFloat (prevNumber) / pasteFloat(currentNumber)
+      break;
+    case '*':
+      result = pasteFloat (prevNumber) * pasteFloat(currentNumber)
+      break;
+    default:
+      return
+  }
+  currentNumber = result
+  calculationOperator = ''
+}
+const clearAll = () => {
+  prevNumber = ''
+  calculationOperator = ''
+  currentNumber = '0'
+}
+const clearBtn = document.querySelector('.all-clear')
+
+clearBtn.addEventListener('click', () => {
+  clearAll()
+  updateScreen(currentNumber)
+})
+inputDecimal = (dot) => {
+  if (currentNumber.includes('.')){
+    return
+  }
+  currentNumber += dot
+}
+
+const decimal = document.querySelector('.decimal')
+
+decimal.addEventListener('click', (event) => {
+  inputDecimal(event.target.value)
+  updateScreen(currentNumber)
+})
